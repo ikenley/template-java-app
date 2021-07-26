@@ -74,10 +74,14 @@ export const AuthContextProvider = ({ children }: any) => {
       return;
     }
 
+    axios.get("/api/status").then((res) => {
+      console.log("/api/status", res.data);
+    });
+
     // axios
     //   .get("/api/main/authorization")
     //   .then((res) => {
-         setIsAuthorized(true);
+    setIsAuthorized(true);
     //   })
     //   .catch((res) => {
     //     setIsAuthorized(false);
