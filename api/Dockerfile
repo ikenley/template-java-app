@@ -11,7 +11,7 @@ COPY pom.xml .
 COPY src src
 
 # Install Maven dependencies
-RUN --mount=type=cache,target=/root/.m2 ./mvnw install
+RUN ./mvnw install
 
 # Extract jar
 WORKDIR /app/target/dependency
