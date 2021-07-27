@@ -12,7 +12,7 @@ COPY src src
 
 # Install Maven dependencies
 RUN chmod +x mvnw
-RUN ./mvnw install
+RUN ./mvnw install --quiet
 
 # Extract jar
 WORKDIR /app/target/dependency

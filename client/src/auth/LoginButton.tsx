@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import GoogleLogin from "react-google-login";
+import { GoogleLoginClientId } from "../constants";
 import { AuthContext } from "../auth/AuthContext";
 
 const responseGoogle = (response: any) => {
@@ -11,7 +12,7 @@ const LoginButton = () => {
 
   return (
     <GoogleLogin
-      clientId="40576505573-35gusqr80mdhv8v4vmpvqmdr9g1t40kq.apps.googleusercontent.com"
+      clientId={GoogleLoginClientId}
       buttonText="Login"
       onSuccess={authContext.handleLogin}
       onFailure={responseGoogle}
