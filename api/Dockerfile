@@ -11,6 +11,7 @@ COPY pom.xml .
 COPY src src
 
 # Install Maven dependencies
+RUN chmod +x mvnw
 RUN ./mvnw install
 
 # Extract jar
