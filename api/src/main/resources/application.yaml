@@ -16,4 +16,4 @@ cloud:
 parameterstore:
   param-prefix: /template-java-app/app
 
-/config/template-java-app/app/test: This is a default yaml value
+test.property: This is a default yaml value
