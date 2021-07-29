@@ -8,6 +8,8 @@ import com.amazonaws.services.simplesystemsmanagement.model.GetParametersByPathR
 import com.amazonaws.services.simplesystemsmanagement.model.ParameterNotFoundException;
 import com.amazonaws.services.simplesystemsmanagement.model.Parameter;
 import org.springframework.core.env.PropertySource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 // Fetches AWS SSM Parameter Store parameters
 // Loads all parameters matching a prefix
@@ -15,6 +17,8 @@ import org.springframework.core.env.PropertySource;
 // Based on https://spring.io/blog/2020/04/23/spring-tips-configuration
 
 public class ParameterStorePropertySource extends PropertySource<AWSSimpleSystemsManagement> {
+    private static final Logger logger = LoggerFactory.getLogger(ParameterStorePropertySource.class);
+
     private String paramPrefix;
 
     private Map<String, String> parameterMap;
@@ -38,6 +42,8 @@ public class ParameterStorePropertySource extends PropertySource<AWSSimpleSystem
     private Map<String, String> getParameterMap() {
         try {
             if (this.parameterMap == null) {
+                logger.info("Retrieving SSM Parameters. paramPrefix={}", paramPrefix);
+
                 var request = new GetParametersByPathRequest().withPath(paramPrefix).withRecursive(true);
                 var result = source.getParametersByPath(request);
 
@@ -48,6 +54,8 @@ public class ParameterStorePropertySource extends PropertySource<AWSSimpleSystem
                     String value = param.getValue();
                     this.parameterMap.put(propertyName, value);
                 }
+
+                logger.info("Found {} parameters", parameters.size());
             }
             return this.parameterMap;
         } catch (ParameterNotFoundException exception) {
