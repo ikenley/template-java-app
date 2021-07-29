@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: template-java-app
+
+server:
+  servlet:
+    contextPath: /api
+
+cloud:
+  aws:
+    region:
+      static: us-east-1
+    credentials:
+      profile-name: antigone-dev-tf
+
+parameterstore:
+  param-prefix: /template-java-app/app
+
+/config/template-java-app/app/test: This is a default yaml value
