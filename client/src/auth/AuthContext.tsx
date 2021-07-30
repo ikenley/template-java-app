@@ -78,14 +78,12 @@ export const AuthContextProvider = ({ children }: any) => {
       console.log("/api/status", res.data);
     });
 
-    // axios
-    //   .get("/api/main/authorization")
-    //   .then((res) => {
-    setIsAuthorized(true);
-    //   })
-    //   .catch((res) => {
-    //     setIsAuthorized(false);
-    //   });
+    axios
+      .get("/api/authorization")
+      .then((res) => {})
+      .catch((res) => {
+        setIsAuthorized(false);
+      });
   }, [loginResponse, setIsAuthorized]);
 
   const AuthState = useMemo(() => {

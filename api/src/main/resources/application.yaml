@@ -1,6 +1,11 @@
 spring:
   application:
     name: template-java-app
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://www.googleapis.com/oauth2/v3/certs
 
 server:
   servlet:
